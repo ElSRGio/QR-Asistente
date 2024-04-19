@@ -20,4 +20,12 @@ empleado_id=e.id ORDER BY a.id DESC;
 return ejecutarConsulta($sql);
 }
 
-public function listar()
+public function listar_repoter($fecha_inicio, $fecha_fin, $empelado_id)
+{
+
+$sql = SELECT a.', CONCAT(e.nombre,' ',e.apellidos) AS empleado, e.codido FROM asistencia a INNER JOIN empleado e ON a.
+empleado_id=e.id ORDER BY a.id DESC;
+
+    }
+
+}

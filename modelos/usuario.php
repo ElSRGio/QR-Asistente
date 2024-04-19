@@ -9,7 +9,7 @@ public function __construct(){
 
 }
 
-//metodo insertar regiustro
+//metodo insertar regiustro asdfasd f
 public function insertar($nombre,$apellidos,$login,$email,$clavehash,$imagen){
 	$sql="INSERT INTO usuarios (nombre,apellidos,login,email,password,imagen,estado,) VALUES ('$nombre','$apellidos','$login','$email','$clavehash','$imagen','1')";
 	return ejecutarConsulta($sql);

@@ -12,11 +12,12 @@ public function_construct()
 {   
 }
 
-//Listas usarios
-
-public listar()
-
-
-
-
+//Listas Registro
+public function listar()
+{
+$sql = "SELECT a.', CONCAT(e.nombre,' ',e.apellidos) AS empleado, e.codido FROM asistencia a INNER JOIN empleado e ON a.
+empleado_id=e.id ORDER BY a.id DESC;
+return ejecutarConsulta($sql);
 }
+
+public function listar()

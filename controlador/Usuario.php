@@ -21,4 +21,10 @@ Switch ($_GET["op"]) {
 case 'guardaryeditar':
 // Inicializamos la variable que contendrá el hash de la contraseña
 $clavehash='';
-// Velificamos si se ha subido una nueva imagen
+// Verificamos si se ha subido una nueva imagen
+if (!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])) {
+// Si no se ha subido una nueva imagen, conservamos la imagen actual
+$imagen = $_POST["imagenactual"];
+} else {
+// Si se ha subido una nueva imagen, la movemos al directorio correspondiente
+$ext =explode(".", $_FILES["imagen"]["name"]);

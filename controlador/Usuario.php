@@ -15,3 +15,10 @@ $email = isset($_POST["email"]) ? limpiarCadena($_POST["email"]) : "";
 $password = isset($_POST["password"]) ? limpiarCadena($_POST["password"]) : "";
 $password = isset($_POST["password"]) ? limpiarCadena($_POST["password"]) : "";
 $imagen = isset($_POST["imagen"]) ? limpiarCadena($_POST["imagen"]) : "";
+
+// Dependiendo de la operación solicitada mediante la variable $_GET["op"] 
+Switch ($_GET["op"]) {
+case 'guardaryeditar':
+// Inicializamos la variable que contendrá el hash de la contraseña
+$clavehash='';
+// Velificamos si se ha subido una nueva imagen

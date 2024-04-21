@@ -76,3 +76,23 @@ $rspta = $usuario->mostrar ($idusuario);
 // Devolvemos el resultado como un objeto JSON
 echo json_encode($rspta);
 break;
+
+case 'listar':
+// Llamamos al método listar de la clase Usuario
+$rspta = $usuario->listar();
+// Inicializamos un array para almacenar los datos
+$data = array();
+    // Iteramos sobre los registros obtenidos y los almacenamos en el array
+while ($reg=$rspta->fetch_object()) {    
+$data[]=array(
+    "0"=>($reg->estado)?'<button class="btn btn-warning btn-xs" onclick="mostrar('.$reg->idusuario.')"><i class="fa fa-pencil"></i></button>'.' '.
+    '<button class="btn btn-info btn-xs" onclick="mostrar_clave('.$reg->idusuario.')"><i class="fa fa-key"></i></button>'.' '.'<button class="btn btn-danger btn-xs" onclick="desactivar('.$reg->idusuario.')"><i class="fa fa-close"></i></button>':'<button class="btn btn-warning
+     btn-xs" onclick="mostrar('.$reg->idusuario.')"><i class="fa fa-pencil"></i></button>'.' '.'<button class="btn btn-info btn-xs" onclick="mostrar_clave('.$reg->idusuario.')"><i class="fa fa-key"></i></button>'.' '.'<button class="btn btn-primary btn-xs" onclick="activar('.$reg->idusuario.')"><i class="fa fa-check"></i></button>',
+    "1"=>$reg->nombre,
+    "2"=>$reg->apellidos,
+    "3"=>$reg->login,
+    "4"=>$reg->email,
+    "5"=>"<img src='../files/usuarios/".$reg->imagen."' height='50px' width='50px'>",
+    "6"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
+    );
+}   

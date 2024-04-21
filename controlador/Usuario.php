@@ -96,3 +96,37 @@ $data[]=array(
     "6"=>($reg->estado)?'<span class="label bg-green">Activado</span>':'<span class="label bg-red">Desactivado</span>'
     );
 }   
+
+// Preparamos la respuesta para DataTables
+$results=array(
+"sEcho"=>1,//info para datatables
+"iTotalRecords"=>count($data),//enviamos el total de registros al datatable
+"iTotalDisplayRecords"=>count($data),//enviamos el total de registros a visualizar
+"aaData"=>$data
+);
+
+// Devolvemos la respuesta cono un objeto 3501
+echo json_encode($results);
+break;
+
+case 'verificar':
+// Validamos si el usuario tiene acceso al sistema
+$logina = $_POST['logina'];
+$clavea = $_POST['clavea'];
+// Hash SHA256 para la contraseña
+$clavehash hash("SHA256", $clavea);
+// Llamamos al método verificar de la clase Usuario 
+$rspta $usuario->verificar ($logina, $clavehash);
+// Obtenemos el resultado como un objeto
+$fetch= $rspta->fetch_object();
+// Si existe el usuario, declaramos las variables de sesión 
+if (isset($fetch)) {
+$_SESSION['idusuario'] = $fetch->idusuario;
+$_SESSION['nombre'] $fetch->nombre;
+$_SESSION['imagen']
+$_SESSION['login'] = $fetch->login;
+}
+// Devolvemos el resultado como un objeto J50H 
+echo json_encode($fetch);
+break;
+

@@ -39,4 +39,19 @@ move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen
 if (!empty($password)) {
     // Generamos el hash SHA256 para la contraseña
      $clavehash = hash("SHA256", $password);
-}    
+}
+
+
+// Verificamos si se está insertando un nuevo usuario o editando uno existente 
+if (empty($idusuario)) {
+// Si es un nuevo usuario, llamamos al método insertar de la clase Usuario
+$rspta=$usuario->insertar ($nombre, $apellidos, $login, $email, $clavehash, $imagen);
+// Devolvemos un mensaje según el resultado de la operación
+echos $rspta ? "Datos registrados correctamente": "No se pudo registrar todos los datos del usuario"; 
+} else {
+// Si es un usuario existente, llamamos al método editar de la clase Usuario
+$rspta = $usuario->editar($idusuario, $nombre, $apellidos, $login, $email, $clavehash, $imagen);
+// Devolvemos un mensaje según el resultado de la operación
+echo $rspta? "Datos actualizados correctamente": "No se pudo actualizar los datos";
+}
+break;

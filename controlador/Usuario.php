@@ -55,3 +55,24 @@ $rspta = $usuario->editar($idusuario, $nombre, $apellidos, $login, $email, $clav
 echo $rspta? "Datos actualizados correctamente": "No se pudo actualizar los datos";
 }
 break;
+
+case 'desactivar':
+// Llamamos al método desactivar de la clase Usuario
+$rspta = $usuario->desactivar($idusuario);
+// Devolvemos un mensaje según el resultado de la operación
+echo $rspta ? "datos desactivados correctamente" : "No se pudo desactivar los datos"; 
+break;
+
+case 'activar':
+// Llamamos al método activar de la clase Usuario
+$rspta = $usuario->activar ($idusuario);
+// Devolvemos un mensaje según el resultado de la operación
+echo $rspta "Datos activados correctamente": "No se pudo activar los datos";
+break;
+
+case 'mostrar':
+// Llamamos al método mostrar de la clase Usuario
+$rspta = $usuario->mostrar ($idusuario);
+// Devolvemos el resultado como un objeto JSON
+echo json_encode($rspta);
+break;

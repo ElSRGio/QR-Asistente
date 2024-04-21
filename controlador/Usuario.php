@@ -34,3 +34,9 @@ $imagen = round(microtime(true)).'.'. end($ext);
 move_uploaded_file($_FILES["imagen"]["tmp_name"], "../files/usuarios/" . $imagen);
 	}
  }
+
+ // Si se ha ingresado una nueva contraseña 
+if (!empty($password)) {
+    // Generamos el hash SHA256 para la contraseña
+     $clavehash = hash("SHA256", $password);
+}    
